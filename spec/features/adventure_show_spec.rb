@@ -8,8 +8,7 @@ feature "view adventure details", %{
   # Acceptance Criteria
   # * I must be signed in
   # * I can see public adventures
-  # * I can see private adventures if I input a password
-  # * I only need to input the password once for a private adventure
+  # * I can see private adventures if I have been invited
   # * I must be able to see the adventure name and details
 
   scenario "view index page" do
