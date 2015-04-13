@@ -14,7 +14,6 @@ FactoryGirl.define do
     date "06/25/2015"
     start_time "9:00 AM"
     access "public"
-    password ""
     user
   end
 end
