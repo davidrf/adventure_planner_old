@@ -12,7 +12,7 @@ feature "view all adventures", %{
     adventure = FactoryGirl.create(:adventure)
 
     visit root_path
-    
+
     expect(page).to have_content(adventure.name)
   end
 end
