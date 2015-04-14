@@ -13,7 +13,7 @@ FactoryGirl.define do
     location "Boston, MA"
     date "06/25/2015"
     start_time "9:00 AM"
-    access "public"
+    public true
     user
   end
 end

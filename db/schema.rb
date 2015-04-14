@@ -11,21 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150413184509) do
+ActiveRecord::Schema.define(version: 20150414161346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "adventure_hosts", force: :cascade do |t|
+    t.integer "user_id",      null: false
+    t.integer "adventure_id", null: false
+  end
+
+  add_index "adventure_hosts", ["adventure_id"], name: "index_adventure_hosts_on_adventure_id", using: :btree
+  add_index "adventure_hosts", ["user_id", "adventure_id"], name: "index_adventure_hosts_on_user_id_and_adventure_id", unique: true, using: :btree
+  add_index "adventure_hosts", ["user_id"], name: "index_adventure_hosts_on_user_id", using: :btree
+
+  create_table "adventure_memberships", force: :cascade do |t|
+    t.string  "status",       default: "invited", null: false
+    t.integer "user_id",                          null: false
+    t.integer "adventure_id",                     null: false
+  end
+
+  add_index "adventure_memberships", ["adventure_id"], name: "index_adventure_memberships_on_adventure_id", using: :btree
+  add_index "adventure_memberships", ["user_id", "adventure_id"], name: "index_adventure_memberships_on_user_id_and_adventure_id", unique: true, using: :btree
+  add_index "adventure_memberships", ["user_id"], name: "index_adventure_memberships_on_user_id", using: :btree
+
   create_table "adventures", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.string   "description", null: false
+    t.string   "name",                       null: false
+    t.string   "description",                null: false
     t.string   "location"
     t.date     "date"
     t.time     "start_time"
-    t.string   "access"
-    t.integer  "user_id",     null: false
+    t.integer  "user_id",                    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "public",      default: true, null: false
   end
 
   add_index "adventures", ["date"], name: "index_adventures_on_date", using: :btree

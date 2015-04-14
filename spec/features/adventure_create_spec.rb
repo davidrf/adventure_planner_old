@@ -1,9 +1,9 @@
 require "rails_helper"
 
-feature "user can see this adventure", %{
+feature "view adventure details", %{
   As a user,
-  I want to see the details about the adventure
-  So that I can learn more about the adventure
+  I want to create an adventure
+  So that I can tell my friends about it
 } do
   # Acceptance Criteria
   # * I must be signed in
