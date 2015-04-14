@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user can see all adventures", %{
+feature "view all adventures", %{
   As a user,
   I want to see a list of adventures
   So that I can go adventuring with my friends
@@ -8,7 +8,7 @@ feature "user can see all adventures", %{
   # Acceptance Criteria
   # * I can see all adventures on the index page
 
-  scenario "view index page" do
+  scenario "user can see all adventures" do
     adventure = FactoryGirl.create(:adventure)
 
     visit root_path

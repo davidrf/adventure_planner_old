@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user can see this adventure", %{
+feature "view adventure details", %{
   As a user,
   I want to see the details about the adventure
   So that I can learn more about the adventure
@@ -12,7 +12,7 @@ feature "user can see this adventure", %{
   # * I only need to input the password once for a private adventure
   # * I must be able to see the adventure name and details
 
-  scenario "view index page" do
+  scenario "user can see this adventure" do
     user = FactoryGirl.create(:user)
     adventure = FactoryGirl.create(:adventure)
 
