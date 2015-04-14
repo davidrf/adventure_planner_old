@@ -11,7 +11,7 @@ feature "user can see this adventure", %{
   # * I can see private adventures if I have been invited
   # * I must be able to see the adventure name and details
 
-  scenario "view index page" do
+  scenario "user can see this adventure" do
     user = FactoryGirl.create(:user)
     adventure = FactoryGirl.create(:adventure)
 

@@ -8,7 +8,7 @@ feature "user can see all adventures", %{
   # Acceptance Criteria
   # * I can see all adventures on the index page
 
-  scenario "view index page" do
+  scenario "user can see all adventures" do
     adventure = FactoryGirl.create(:adventure)
 
     visit root_path
