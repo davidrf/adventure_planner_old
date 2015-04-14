@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "view adventure details", %{
+feature "user can see this adventure", %{
   As a user,
   I want to see the details about the adventure
   So that I can learn more about the adventure

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "view all adventures", %{
+feature "user can see all adventures", %{
   As a user,
   I want to see a list of adventures
   So that I can go adventuring with my friends
