@@ -8,8 +8,8 @@ feature "user can see this adventure", %{
   # Acceptance Criteria
   # * I must be signed in
   # * I can see public adventures
-  # * I can see private adventures if I have been invited
   # * I must be able to see the adventure name and details
+  # * I can see private adventures if I have been invited
 
   scenario "user can see this adventure" do
     user = FactoryGirl.create(:user)
