@@ -1,0 +1,36 @@
+<%= form_for @adventure do |f| %>
+  <% if @adventure.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@adventure.errors.count, "error") %> prohibited this adventure from being saved:</h2>
+      <ul>
+      <% @adventure.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%= f.label :name, for: "adventure_name_field", class: "right inline" %>
+<%= f.text_field :name, id: "adventure_name_field" %>
+
+<%= f.label :description, for: "adventure_description_field", class: "right inline" %>
+<%= f.text_field :description, id: "adventure_description_field" %>
+
+<%= f.label :location, for: "adventure_location_field", class: "right inline" %>
+<%= f.text_field :location, id: "adventure_location_field" %>
+
+<%= f.label :date, for: "adventure_date_field", class: "right inline" %>
+<%= f.text_field :date, id: "adventure_date_field" %>
+
+<%= f.label :start_time, "Start Time", for: "adventure_start_time_field", class: "right inline" %>
+<%= f.text_field :start_time, id: "adventure_start_time_field"  %>
+
+<%= f.label :end_time, "End Time", for: "adventure_end_time_field", class: "right inline" %>
+<%= f.text_field :end_time, id: "adventure_end_time_field" %>
+
+<%= f.label :public_adventure, "Public Adventure?", class: "right inline" %>
+<%= f.select :public_adventure, @public_adventure_dropdown %>
+
+<%= f.submit "Create Adventure!", class: "button radius" %>
+
+<% end %>
