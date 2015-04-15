@@ -11,12 +11,9 @@ feature "edit adventure details", %{
   # * I can optionally give the location, start and end time
 
   scenario "host can edit an adventure" do
-    host = FactoryGirl.create(:user)
-    adventure = FactoryGirl.create(:adventure)
-    adventure_host_record = FactoryGirl.create(:adventure_host,
-      user: host,
-      adventure: adventure
-    )
+    adventure_host_record = FactoryGirl.create(:adventure_host)
+    host = adventure_host_record.user
+    adventure = adventure_host_record.adventure
 
     visit root_path
     sign_in_as(host)
@@ -35,12 +32,9 @@ feature "edit adventure details", %{
   end
 
   scenario "host does not input required information" do
-    host = FactoryGirl.create(:user)
-    adventure = FactoryGirl.create(:adventure)
-    adventure_host_record = FactoryGirl.create(:adventure_host,
-      user: host,
-      adventure: adventure
-    )
+    adventure_host_record = FactoryGirl.create(:adventure_host)
+    host = adventure_host_record.user
+    adventure = adventure_host_record.adventure
 
     visit root_path
     sign_in_as(host)

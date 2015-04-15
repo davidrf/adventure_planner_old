@@ -10,12 +10,9 @@ feature "host cancels adventure", %{
   # * I must be a host of the adventure
 
   scenario "user can delete an adventure" do
-    host = FactoryGirl.create(:user)
-    adventure = FactoryGirl.create(:adventure)
-    adventure_host_record = FactoryGirl.create(:adventure_host,
-      user: host,
-      adventure: adventure
-    )
+    adventure_host_record = FactoryGirl.create(:adventure_host)
+    host = adventure_host_record.user
+    adventure = adventure_host_record.adventure
 
     visit root_path
     sign_in_as(host)
