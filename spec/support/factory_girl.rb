@@ -28,8 +28,10 @@ FactoryGirl.define do
     public_adventure true
     before(:create) do |adventure|
       user = FactoryGirl.create(:user)
-      FactoryGirl.create(:adventure_host, user: user, adventure: adventure)
-      FactoryGirl.create(:adventure_membership, user: user, adventure: adventure)
+      adventure.adventure_hosts << FactoryGirl.build(:adventure_host,
+        user: user,
+        adventure: adventure
+      )
     end
   end
 end

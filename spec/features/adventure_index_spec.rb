@@ -7,6 +7,7 @@ feature "user can see all adventures", %{
 } do
   # Acceptance Criteria
   # * I can see all adventures on the index page
+  # * I can see private adventures if I have been invited
 
   scenario "user can see all adventures" do
     adventure = FactoryGirl.create(:adventure)

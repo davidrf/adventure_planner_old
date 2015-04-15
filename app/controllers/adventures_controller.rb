@@ -9,12 +9,12 @@ class AdventuresController < ApplicationController
 
   def new
     @adventure = Adventure.new
+    @public_adventure_dropdown = [["Yes", true], ["No", false]]
   end
 
   def create
     @adventure = Adventure.new(adventure_params)
     @adventure.adventure_hosts.new(user: current_user)
-    @adventure.adventure_memberships.new(user: current_user)
 
     if @adventure.save
       flash[:notice] = "Adventure Created!"
@@ -34,7 +34,8 @@ class AdventuresController < ApplicationController
       :location,
       :date,
       :start_time,
-      :end_time
+      :end_time,
+      :public_adventure
     )
   end
 end

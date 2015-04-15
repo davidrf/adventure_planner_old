@@ -10,7 +10,7 @@ feature "view adventure details", %{
   # * I must specify the name, description
   # * I can optionally give the location, start and end time, and set it as private.
 
-  scenario "user creates adventure" do
+  scenario "user can create an adventure" do
     user = FactoryGirl.create(:user)
     adventure = FactoryGirl.build(:adventure)
 
@@ -23,6 +23,7 @@ feature "view adventure details", %{
     fill_in "Date", with: adventure.date
     fill_in "Start Time", with: adventure.start_time
     fill_in "End Time", with: adventure.end_time
+    select "Yes", from: "Public Adventure?"
     click_button "Create Adventure!"
 
     expect(page).to have_content(adventure.name)

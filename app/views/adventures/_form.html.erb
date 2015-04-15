@@ -11,22 +11,25 @@
   <% end %>
 
 <%= f.label :name, for: "adventure_name_field", class: "right inline" %>
-<%= f.text_field :name, id: "adventure_name_field" %>'
+<%= f.text_field :name, id: "adventure_name_field" %>
 
 <%= f.label :description, for: "adventure_description_field", class: "right inline" %>
-<%= f.text_field :description, id: "adventure_description_field" %>'
+<%= f.text_field :description, id: "adventure_description_field" %>
 
 <%= f.label :location, for: "adventure_location_field", class: "right inline" %>
-<%= f.text_field :location, id: "adventure_location_field" %>'
+<%= f.text_field :location, id: "adventure_location_field" %>
 
 <%= f.label :date, for: "adventure_date_field", class: "right inline" %>
-<%= f.text_field :date, id: "adventure_date_field" %>'
+<%= f.text_field :date, id: "adventure_date_field" %>
 
 <%= f.label :start_time, "Start Time", for: "adventure_start_time_field", class: "right inline" %>
-<%= f.text_field :start_time, id: "adventure_start_time_field"  %>'
+<%= f.text_field :start_time, id: "adventure_start_time_field"  %>
 
 <%= f.label :end_time, "End Time", for: "adventure_end_time_field", class: "right inline" %>
-<%= f.text_field :end_time, id: "adventure_end_time_field" %>'
+<%= f.text_field :end_time, id: "adventure_end_time_field" %>
+
+<%= f.label :public_adventure, "Public Adventure?", class: "right inline" %>
+<%= f.select :public_adventure, @public_adventure_dropdown %>
 
 <%= f.submit "Create Adventure!", class: "button radius" %>
 

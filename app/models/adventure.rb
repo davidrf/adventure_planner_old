@@ -6,4 +6,5 @@ class Adventure < ActiveRecord::Base
 
   validates :name, presence: true
   validates :description, presence: true
+  validates :adventure_hosts, presence: true
 end
