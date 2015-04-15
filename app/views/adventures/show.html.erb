@@ -4,3 +4,4 @@
 <h2><%= @adventure.date %></h2>
 <h2><%= @adventure.start_time %></h2>
 <h2><%= @adventure.end_time %></h2>
+<%= link_to 'Join The Adventure!', adventure_adventure_memberships_path(@adventure), method: :post %>

@@ -26,12 +26,5 @@ FactoryGirl.define do
     start_time "9:00 AM"
     end_time "5:00 PM"
     public_adventure true
-    before(:create) do |adventure|
-      user = FactoryGirl.create(:user)
-      adventure.adventure_hosts << FactoryGirl.build(:adventure_host,
-        user: user,
-        adventure: adventure
-      )
-    end
   end
 end
