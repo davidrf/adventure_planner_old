@@ -5,3 +5,7 @@
 <h2><%= @adventure.start_time %></h2>
 <h2><%= @adventure.end_time %></h2>
 <%= link_to 'Join The Adventure!', adventure_adventure_memberships_path(@adventure), method: :post %>
+<% if @adventure.hosts.include?(current_user) %>
+  <%= link_to 'Cancel Adventure', adventure_path(@adventure), method: :delete %>
+  <%= link_to 'Update Adventure!', edit_adventure_path(@adventure) %>
+<% end %>

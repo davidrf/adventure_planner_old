@@ -35,4 +35,21 @@ feature "view adventure details", %{
     expect(page).to have_content(adventure.end_time)
     expect(AdventureHost.first.user).to eq(user)
   end
+
+  scenario "user does not input required information" do
+    user = FactoryGirl.create(:user)
+
+    visit root_path
+    sign_in_as(user)
+    click_link "Host An Adventure!"
+    click_button "Create Adventure!"
+
+    expect(page).to have_content("Adventure Not Created. Invalid Form Submission.")
+  end
+
+  scenario "user not signed in cannot host an adventure" do
+    visit root_path
+
+    expect(page).to_not have_content("Host An Adventure!")
+  end
 end

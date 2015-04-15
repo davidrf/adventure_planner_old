@@ -18,11 +18,37 @@ class AdventuresController < ApplicationController
 
     if @adventure.save
       flash[:notice] = "Adventure Created!"
-      redirect_to adventure_path(@adventure)
+      redirect_to adventure_url(@adventure)
     else
       flash[:alert] = "Adventure Not Created. Invalid Form Submission."
+      @public_adventure_dropdown = [["Yes", true], ["No", false]]
       render :new
     end
+  end
+
+  def edit
+    @adventure = Adventure.find(params[:id])
+    @public_adventure_dropdown = [["Yes", true], ["No", false]]
+  end
+
+  def update
+    @adventure = Adventure.find(params[:id])
+
+    if @adventure.update(adventure_params)
+      flash[:notice] = "Adventure Updated!"
+      redirect_to adventure_url(@adventure)
+    else
+      flash[:alert] = "Adventure Not Updated. Invalid Form Submission."
+      @public_adventure_dropdown = [["Yes", true], ["No", false]]
+      render :edit
+    end
+  end
+
+  def destroy
+    @adventure = Adventure.find(params[:id])
+    @adventure.destroy
+    flash[:notice] = "Adventure Cancelled."
+    redirect_to adventures_url
   end
 
   private
