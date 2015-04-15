@@ -31,6 +31,9 @@
 <%= f.label :public_adventure, "Public Adventure?", class: "right inline" %>
 <%= f.select :public_adventure, @public_adventure_dropdown %>
 
-<%= f.submit "Create Adventure!", class: "button radius" %>
-
+  <% if @adventure.valid? %>
+    <%= f.submit "Update Adventure!", class: "button radius" %>
+  <% else %>
+    <%= f.submit "Create Adventure!", class: "button radius" %>
+  <% end %>
 <% end %>
