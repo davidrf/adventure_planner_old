@@ -8,7 +8,8 @@ feature "view adventure details", %{
   # Acceptance Criteria
   # * I must be signed in
   # * I must specify the name, description
-  # * I can optionally give the location, start and end time, and set it as private.
+  # * I can optionally give the location, start and end time,
+  #   and set it as private.
 
   scenario "user can create an adventure" do
     user = FactoryGirl.create(:user)

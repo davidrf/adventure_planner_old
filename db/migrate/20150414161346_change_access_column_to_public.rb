@@ -1,7 +1,9 @@
 class ChangeAccessColumnToPublic < ActiveRecord::Migration
   def up
     remove_column :adventures, :access
-    add_column :adventures, :public_adventure, :boolean, null: false, default: true
+    add_column :adventures, :public_adventure, :boolean,
+      null: false,
+      default: true
   end
 
   def down

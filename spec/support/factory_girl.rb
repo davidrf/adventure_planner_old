@@ -22,7 +22,7 @@ FactoryGirl.define do
     name "Sailing Trip"
     description "Sailing around Boston Harbor"
     location "Boston, MA"
-    date Date.new(2015,06,25)
+    date Date.new(2015, 06, 25)
     start_time "9:00 AM"
     end_time "5:00 PM"
     public_adventure true
