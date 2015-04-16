@@ -27,4 +27,8 @@ FactoryGirl.define do
     end_time "5:00 PM"
     public_adventure true
   end
+
+  factory :time_poll do
+    adventure
+  end
 end
