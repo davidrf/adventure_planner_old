@@ -33,6 +33,9 @@ class AdventuresController < ApplicationController
 
   def update
     @adventure = Adventure.find(params[:id])
+    unless params[:adventure]
+      params[:adventure] = { poll_opened_at: DateTime.now }
+    end
 
     if @adventure.update(adventure_params)
       flash[:notice] = "Adventure Updated!"
