@@ -44,4 +44,9 @@ FactoryGirl.define do
     end
     adventure
   end
+
+  factory :proposed_time_vote do
+    proposed_time
+    adventure_membership
+  end
 end
