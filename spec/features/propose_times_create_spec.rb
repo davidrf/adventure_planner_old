@@ -35,7 +35,6 @@ feature "host can create a proposed time", %{
     adventure_host_record = FactoryGirl.create(:adventure_host)
     host = adventure_host_record.user
     adventure = adventure_host_record.adventure
-    proposed_time = FactoryGirl.build(:proposed_time, adventure: adventure)
 
     visit root_path
     sign_in_as(host)
