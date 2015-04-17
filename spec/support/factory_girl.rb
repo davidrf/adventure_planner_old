@@ -31,15 +31,15 @@ FactoryGirl.define do
 
   factory :proposed_time do
     sequence(:date) do |n|
-      n  = n % 32
+      n = n % 32
       Date.new(2016, 07, n)
     end
     sequence(:start_time) do |n|
-      n  = n % 60
+      n = n % 60
       "10:#{n} AM"
     end
     sequence(:end_time) do |n|
-      n  = n % 60
+      n = n % 60
       "6:#{n} PM"
     end
     adventure
