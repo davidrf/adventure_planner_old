@@ -10,7 +10,7 @@
   <% if @adventure.poll_opened_at %>
     <%= link_to 'Propose A Time', new_adventure_proposed_time_path(@adventure) %>
   <% else %>
-    <%= link_to 'Open Time Poll', adventure_path(@adventure, adventure: { poll_opened_at: DateTime.now }), method: :put %>
+    <%= link_to 'Open Time Poll', adventure_path(@adventure), method: :put %>
   <% end %>
 <% elsif !@adventure.members.include?(current_user) %>
   <%= link_to 'Join The Adventure!', adventure_adventure_memberships_path(@adventure), method: :post %>
