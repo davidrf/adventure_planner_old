@@ -4,8 +4,24 @@
 <h2><%= @adventure.date %></h2>
 <h2><%= @adventure.start_time %></h2>
 <h2><%= @adventure.end_time %></h2>
-<%= link_to 'Join The Adventure!', adventure_adventure_memberships_path(@adventure), method: :post %>
 <% if @adventure.hosts.include?(current_user) %>
   <%= link_to 'Cancel Adventure', adventure_path(@adventure), method: :delete %>
   <%= link_to 'Update Adventure!', edit_adventure_path(@adventure) %>
+  <% if @adventure.poll_opened_at %>
+    <%= link_to 'Propose A Time', new_adventure_proposed_time_path(@adventure) %>
+  <% else %>
+    <%= link_to 'Open Time Poll', adventure_path(@adventure, adventure: { poll_opened_at: DateTime.now }), method: :put %>
+  <% end %>
+<% elsif !@adventure.members.include?(current_user) %>
+  <%= link_to 'Join The Adventure!', adventure_adventure_memberships_path(@adventure), method: :post %>
 <% end %>
+
+<ul>
+  <% @adventure.proposed_times.each do |proposed_time| %>
+  <li>
+    <%= proposed_time.date %>
+    <%= proposed_time.start_time %>
+    <%= proposed_time.end_time %>  
+  </li>
+  <% end %>
+</ul>

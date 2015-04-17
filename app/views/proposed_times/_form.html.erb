@@ -1,0 +1,23 @@
+<%= form_for [@adventure, @proposed_time] do |f| %>
+  <% if @proposed_time.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@proposed_time.errors.count, "error") %> prohibited this proposed time from being saved:</h2>
+      <ul>
+      <% @proposed_time.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.label :date, for: "proposed_time_date_field", class: "right inline" %>
+  <%= f.text_field :date, id: "proposed_time_date_field" %>
+
+  <%= f.label :start_time, "Start Time", for: "proposed_time_start_time_field", class: "right inline" %>
+  <%= f.text_field :start_time, id: "proposed_time_start_time_field"  %>
+
+  <%= f.label :end_time, "End Time", for: "proposed_time_end_time_field", class: "right inline" %>
+  <%= f.text_field :end_time, id: "proposed_time_end_time_field" %>
+
+  <%= f.submit "Propose Time", class: "button radius" %>
+<% end %>

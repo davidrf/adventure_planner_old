@@ -26,5 +26,22 @@ FactoryGirl.define do
     start_time "9:00 AM"
     end_time "5:00 PM"
     public_adventure true
+    poll_opened_at nil
+  end
+
+  factory :proposed_time do
+    sequence(:date) do |n|
+      n = n % 32
+      Date.new(2016, 07, n)
+    end
+    sequence(:start_time) do |n|
+      n = n % 60
+      "10:#{n} AM"
+    end
+    sequence(:end_time) do |n|
+      n = n % 60
+      "6:#{n} PM"
+    end
+    adventure
   end
 end

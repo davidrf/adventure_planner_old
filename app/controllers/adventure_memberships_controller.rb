@@ -8,7 +8,7 @@ class AdventureMembershipsController < ApplicationController
     if @adventure_membership.save
       flash[:notice] = "You Have Joined The Adventure!"
     else
-      flash[:alert] = "Cannot Join Adventure"
+      flash[:alert] = "You Must Sign In To Join The Adventure!"
     end
 
     redirect_to adventure_path(@adventure)
