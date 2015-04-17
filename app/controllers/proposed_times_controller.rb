@@ -6,9 +6,11 @@ class ProposedTimesController < ApplicationController
 
   def create
     @adventure = Adventure.find(params[:adventure_id])
-    @adventure.proposed_times.new(proposed_times_params)
+    @proposed_time = ProposedTime.new(proposed_times_params)
+    @proposed_time.adventure = @adventure
 
-    if @adventure.save
+
+    if @proposed_time.save
       flash[:notice] = "Proposed Time Added!"
       redirect_to adventure_url(@adventure)
     else

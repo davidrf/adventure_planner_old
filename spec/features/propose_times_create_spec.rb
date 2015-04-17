@@ -30,4 +30,20 @@ feature "host can create a proposed time", %{
     expect(page).to have_content(proposed_time.start_time)
     expect(page).to have_content(proposed_time.end_time)
   end
+
+  scenario "required fields not filled in" do
+    adventure_host_record = FactoryGirl.create(:adventure_host)
+    host = adventure_host_record.user
+    adventure = adventure_host_record.adventure
+    proposed_time = FactoryGirl.build(:proposed_time, adventure: adventure)
+
+    visit root_path
+    sign_in_as(host)
+    click_link adventure.name
+    click_link "Open Time Poll"
+    click_link "Propose A Time"
+    click_button "Propose Time"
+
+    expect(page).to have_content("Proposed Time Not Added. Invalid Form Submission.")
+  end
 end
