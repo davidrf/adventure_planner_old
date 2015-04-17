@@ -5,4 +5,8 @@ Rails.application.routes.draw do
     resources :adventure_memberships, only: [:create]
     resources :proposed_times, only: [:new, :create]
   end
+
+  resources :proposed_times, only: :none do
+    resources :proposed_time_votes, only: [:create, :destroy]
+  end
 end
