@@ -3,6 +3,7 @@ class Adventure < ActiveRecord::Base
   has_many :members, through: :adventure_memberships, source: :user
   has_many :adventure_hosts, autosave: true
   has_many :hosts, through: :adventure_hosts, source: :user
+  has_many :proposed_times
 
   validates :name, presence: true
   validates :description, presence: true

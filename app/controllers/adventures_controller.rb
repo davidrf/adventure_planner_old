@@ -61,7 +61,8 @@ class AdventuresController < ApplicationController
       :date,
       :start_time,
       :end_time,
-      :public_adventure
+      :public_adventure,
+      :poll_opened_at
     )
   end
 end
