@@ -9,7 +9,6 @@ class ProposedTimesController < ApplicationController
     @proposed_time = ProposedTime.new(proposed_times_params)
     @proposed_time.adventure = @adventure
 
-
     if @proposed_time.save
       flash[:notice] = "Proposed Time Added!"
       redirect_to adventure_url(@adventure)
