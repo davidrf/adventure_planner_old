@@ -51,7 +51,7 @@ feature "proposed time votes", %{
     proposed_time = FactoryGirl.create(:proposed_time,
       adventure: adventure
     )
-    proposed_time_vote = FactoryGirl.create(:proposed_time_vote,
+    FactoryGirl.create(:proposed_time_vote,
       proposed_time: proposed_time,
       adventure_membership: membership_record_2
     )

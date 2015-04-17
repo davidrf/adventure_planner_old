@@ -22,6 +22,7 @@
     <%= proposed_time.date %>
     <%= proposed_time.start_time %>
     <%= proposed_time.end_time %>
+    <p>No. Attending: <%= proposed_time.votes.count %></p>
     <% if proposed_time.vote_record(current_user) %>
       <%= link_to 'Cannot Attend', proposed_time_proposed_time_vote_path(proposed_time, proposed_time.vote_record(current_user)), method: :delete %>
     <% else %>

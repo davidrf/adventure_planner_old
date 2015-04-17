@@ -8,7 +8,10 @@ class ProposedTime < ActiveRecord::Base
   validates :adventure, presence: true
 
   def vote_record(user)
-    membership_record = AdventureMembership.find_by(user: user, adventure: adventure)
+    membership_record = AdventureMembership.find_by(
+      user: user,
+      adventure: adventure
+    )
     votes.find_by(adventure_membership: membership_record)
   end
 end
