@@ -15,7 +15,7 @@ feature "assign user to a supply", %{
     adventure_host_record = FactoryGirl.create(:adventure_host)
     host = adventure_host_record.user
     adventure = adventure_host_record.adventure
-    supply = FactoryGirl.create(:supply, adventure: adventure)
+    FactoryGirl.create(:supply, adventure: adventure)
 
     visit root_path
     sign_in_as(host)
@@ -29,7 +29,7 @@ feature "assign user to a supply", %{
     membership_record = FactoryGirl.create(:adventure_membership)
     user = membership_record.user
     adventure = membership_record.adventure
-    supply = FactoryGirl.create(:supply, adventure: adventure)
+    FactoryGirl.create(:supply, adventure: adventure)
 
     visit root_path
     sign_in_as(user)
@@ -43,7 +43,7 @@ feature "assign user to a supply", %{
     membership_record = FactoryGirl.create(:adventure_membership)
     user = membership_record.user
     adventure = membership_record.adventure
-    supply = FactoryGirl.create(:supply, adventure: adventure, adventure_membership: membership_record)
+    FactoryGirl.create(:supply, adventure: adventure, adventure_membership: membership_record)
 
     visit root_path
     sign_in_as(user)
@@ -59,7 +59,7 @@ feature "assign user to a supply", %{
     other_membership_record = FactoryGirl.create(:adventure_membership)
     user = membership_record.user
     adventure = membership_record.adventure
-    supply = FactoryGirl.create(:supply, adventure: adventure, adventure_membership: other_membership_record)
+    FactoryGirl.create(:supply, adventure: adventure, adventure_membership: other_membership_record)
 
     visit root_path
     sign_in_as(user)

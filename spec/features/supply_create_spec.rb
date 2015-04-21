@@ -31,7 +31,6 @@ feature "create a supply", %{
     adventure_host_record = FactoryGirl.create(:adventure_host)
     host = adventure_host_record.user
     adventure = adventure_host_record.adventure
-    supply = FactoryGirl.build(:supply, adventure: adventure)
 
     visit root_path
     sign_in_as(host)
