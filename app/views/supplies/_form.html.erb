@@ -1,0 +1,17 @@
+<%= form_for [@adventure, @supply] do |f| %>
+  <% if @supply.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@supply.errors.count, "error") %> prohibited this proposed time from being saved:</h2>
+      <ul>
+      <% @supply.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.label :name, for: "proposed_time_date_field", class: "right inline" %>
+  <%= f.text_field :name, id: "proposed_time_date_field" %>
+
+  <%= f.submit "Add Supply!", class: "button radius" %>
+<% end %>
