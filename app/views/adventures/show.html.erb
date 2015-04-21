@@ -7,6 +7,7 @@
 <% if @adventure.hosts.include?(current_user) %>
   <%= link_to 'Cancel Adventure', adventure_path(@adventure), method: :delete %>
   <%= link_to 'Update Adventure!', edit_adventure_path(@adventure) %>
+  <%= link_to 'Add a Supply!', new_adventure_supply_path(@adventure) %>
   <% if @adventure.poll_opened_at %>
     <%= link_to 'Propose A Time', new_adventure_proposed_time_path(@adventure) %>
   <% else %>
