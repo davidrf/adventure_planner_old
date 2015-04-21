@@ -8,4 +8,8 @@ class Adventure < ActiveRecord::Base
 
   validates :name, presence: true
   validates :description, presence: true
+
+  def attendees
+    members + hosts
+  end
 end

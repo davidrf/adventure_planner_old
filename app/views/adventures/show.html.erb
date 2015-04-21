@@ -7,6 +7,7 @@
 <% if @adventure.hosts.include?(current_user) %>
   <%= link_to 'Cancel Adventure', adventure_path(@adventure), method: :delete %>
   <%= link_to 'Update Adventure!', edit_adventure_path(@adventure) %>
+  <%= link_to 'Add a Supply!', new_adventure_supply_path(@adventure) %>
   <% if @adventure.poll_opened_at %>
     <%= link_to 'Propose A Time', new_adventure_proposed_time_path(@adventure) %>
   <% else %>
@@ -27,7 +28,7 @@
       <%= link_to 'Cannot Attend', proposed_time_proposed_time_vote_path(proposed_time, proposed_time.vote_record(current_user)), method: :delete %>
     <% else %>
       <%= link_to 'Can Attend', proposed_time_proposed_time_votes_path(proposed_time), method: :post %>
-    <%end %>
+    <% end %>
   </li>
   <% end %>
 </ul>
@@ -36,6 +37,17 @@
   <% @adventure.supplies.each do |supply| %>
   <li>
     <%= supply.name %>
+    <% if @adventure.hosts.include?(current_user) %>
+      <%= link_to 'Delete Supply', adventure_supply_path(@adventure, supply), method: :delete %>
+    <% end %>
+
+    <% if @adventure.attendees.include?(current_user) %>
+      <% if supply.brought_by?(current_user) %>
+        <%= link_to 'I Cannot Bring This', adventure_supply_path(@adventure, supply), method: :put %>
+      <% elsif supply.unclaimed? %>
+        <%= link_to 'I Can Bring This!', adventure_supply_path(@adventure, supply), method: :put %>
+      <% end %>
+    <% end %>
   </li>
   <% end %>
 </ul>

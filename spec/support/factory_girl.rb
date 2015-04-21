@@ -19,7 +19,7 @@ FactoryGirl.define do
   end
 
   factory :adventure do
-    name "Sailing Trip"
+    sequence(:name) { |n| "Sailing Trip #{n}" }
     description "Sailing around Boston Harbor"
     location "Boston, MA"
     date Date.new(2015, 06, 25)
