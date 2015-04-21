@@ -31,3 +31,11 @@
   </li>
   <% end %>
 </ul>
+
+<ul>
+  <% @adventure.supplies.each do |supply| %>
+  <li>
+    <%= supply.name %>
+  </li>
+  <% end %>
+</ul>

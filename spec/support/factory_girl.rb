@@ -49,4 +49,9 @@ FactoryGirl.define do
     proposed_time
     adventure_membership
   end
+
+  factory :supply do
+    name "Beer"
+    adventure
+  end
 end
