@@ -51,3 +51,32 @@
   </li>
   <% end %>
 </ul>
+
+<% if @adventure.attendees.include?(current_user) %>
+  <%= link_to 'Add An Expense!', new_adventure_expense_path(@adventure) %>
+<% end %>
+
+
+<ul>
+  <% @adventure.expenses.each do |expense| %>
+  <li>
+    <%= expense.name %> bought by <%= expense.owner.full_name %> for <%= expense.cost %>
+
+    <% if user_signed_in? && expense.bought_by?(current_user) %>
+      <%= link_to 'Delete Expense', adventure_expense_path(@adventure, expense), method: :delete %>
+      <%= link_to 'Edit Expense', edit_adventure_expense_path(@adventure, expense) %>
+    <% end %>
+  </li>
+  <% end %>
+</ul>
+
+<span>Total Cost: <%= @adventure.total_cost %></span>
+<span>Cost Per Person: <%= @adventure.cost_per_person_formatted %></span>
+
+<ul>
+  <% @adventure.transactions.each do |transaction| %>
+  <li>
+    <%= transaction %>
+  </li>
+  <% end %>
+</ul>

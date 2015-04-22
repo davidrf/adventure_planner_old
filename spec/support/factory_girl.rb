@@ -2,6 +2,8 @@ require "factory_girl"
 
 FactoryGirl.define do
   factory :user do
+    sequence(:first_name) {|n| "Gene#{n}" }
+    sequence(:last_name) {|n| "Parmesan#{n}" }
     sequence(:email) {|n| "user#{n}@example.com" }
     password "password"
     password_confirmation "password"
@@ -53,5 +55,12 @@ FactoryGirl.define do
   factory :supply do
     name "Beer"
     adventure
+  end
+
+  factory :expense do
+    sequence(:name) { |n| "Beer Case No.#{n}" }
+    cost_in_cents 2000
+    adventure
+    adventure_membership
   end
 end

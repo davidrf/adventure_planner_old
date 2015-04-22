@@ -1,0 +1,20 @@
+<%= form_for [@adventure, @expense] do |f| %>
+  <% if @expense.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@expense.errors.count, "error") %> prohibited this proposed time from being saved:</h2>
+      <ul>
+      <% @expense.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.label :name, for: "expense_name_field", class: "right inline" %>
+  <%= f.text_field :name, id: "expense_name_field" %>
+
+  <%= f.label :cost_in_cents, for: "expense_cost_in_cents_field", class: "right inline" %>
+  <%= f.number_field :cost_in_cents, id: "expense_cost_in_cents_field", step: 0.01 %>
+
+  <%= f.submit "Submit Expense!", class: "button radius" %>
+<% end %>
