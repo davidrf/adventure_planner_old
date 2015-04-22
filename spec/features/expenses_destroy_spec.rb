@@ -14,7 +14,7 @@ feature "delete an expense", %{
     membership_record = FactoryGirl.create(:adventure_membership)
     user = membership_record.user
     adventure = membership_record.adventure
-    expense = FactoryGirl.create(:expense,
+    FactoryGirl.create(:expense,
       adventure: adventure,
       adventure_membership: membership_record
     )
@@ -35,7 +35,7 @@ feature "delete an expense", %{
     another_membership_record = FactoryGirl.create(:adventure_membership,
       adventure: adventure
     )
-    expense = FactoryGirl.create(:expense,
+    FactoryGirl.create(:expense,
       adventure: adventure,
       adventure_membership: another_membership_record
     )
@@ -50,7 +50,7 @@ feature "delete an expense", %{
   scenario "must be signed in to delete" do
     membership_record = FactoryGirl.create(:adventure_membership)
     adventure = membership_record.adventure
-    expense = FactoryGirl.create(:expense,
+    FactoryGirl.create(:expense,
       adventure: adventure,
       adventure_membership: membership_record
     )
