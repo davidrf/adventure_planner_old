@@ -1,0 +1,30 @@
+#adventure_show_top_buttons {
+  margin-left: 1em;
+  margin-top: 0.7em;
+}
+
+th {
+  width: 10em;
+  &#dateheader {
+    width: 15em;
+  }
+  &#expense_cost_column {
+    width: 6em;
+  }
+}
+
+.button.table_button {
+  margin-bottom: 0;
+}
+
+#adventure_show_propose_time_button, #adventure_show_add_supply_button {
+  margin-top: 0.2em;
+  margin-bottom: 0;
+  margin-left: 1em;
+}
+
+#transaction_title {
+  text-align: center;
+  font-weight: bold;
+  text-decoration: underline;
+}

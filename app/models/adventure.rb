@@ -10,6 +10,18 @@ class Adventure < ActiveRecord::Base
   validates :name, presence: true
   validates :description, presence: true
 
+  def formatted_date
+    date.strftime("%A %B #{date.day.ordinalize}, %Y") if date
+  end
+
+  def formatted_start_time
+    start_time.strftime("%I:%M%p") if start_time
+  end
+
+  def formatted_end_time
+    end_time.strftime("%I:%M%p") if end_time
+  end
+
   def attendees
     if members.empty?
       hosts

@@ -20,7 +20,7 @@ feature "assign user to a supply", %{
     visit root_path
     sign_in_as(host)
     click_link adventure.name
-    click_link "I Can Bring This!"
+    click_link "Bring"
 
     expect(page).to have_content("You Are Now In Charge Of Bringing This Supply!")
   end
@@ -34,7 +34,7 @@ feature "assign user to a supply", %{
     visit root_path
     sign_in_as(user)
     click_link adventure.name
-    click_link "I Can Bring This!"
+    click_link "Bring"
 
     expect(page).to have_content("You Are Now In Charge Of Bringing This Supply!")
   end
@@ -48,10 +48,10 @@ feature "assign user to a supply", %{
     visit root_path
     sign_in_as(user)
     click_link adventure.name
-    click_link "I Cannot Bring This"
+    click_link "Unbring"
 
     expect(page).to have_content("You Are No Longer Bringing This Supply")
-    expect(page).to have_content("I Can Bring This!")
+    expect(page).to have_content("Bring")
   end
 
   scenario "only one member can bring a supply" do
@@ -65,6 +65,6 @@ feature "assign user to a supply", %{
     sign_in_as(user)
     click_link adventure.name
 
-    expect(page).to_not have_content("I Can Bring This!")
+    expect(page).to_not have_content("Bring")
   end
 end
