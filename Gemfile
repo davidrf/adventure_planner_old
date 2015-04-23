@@ -12,6 +12,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
 gem 'foundation-rails'
+gem 'rails_serve_static_assets'
+
+group :production do
+  gem 'rails_12factor'
+end
+
 
 group :development, :test do
   gem 'byebug'

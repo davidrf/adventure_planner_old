@@ -9,9 +9,10 @@ feature "user can see all supplies", %{
   # * I can see all supplies on the adventure show page
 
   scenario "user can see all supplies" do
-    user = FactoryGirl.create(:user)
-    supply = FactoryGirl.create(:supply)
-    adventure = supply.adventure
+    membership_record = FactoryGirl.create(:adventure_membership)
+    user = membership_record.user
+    adventure = membership_record.adventure
+    supply = FactoryGirl.create(:supply, adventure: adventure)
 
     visit root_path
     sign_in_as(user)

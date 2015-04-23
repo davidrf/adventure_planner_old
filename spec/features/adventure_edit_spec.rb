@@ -26,9 +26,9 @@ feature "edit adventure details", %{
     expect(page).to have_content("Yacht Week")
     expect(page).to have_content(adventure.description)
     expect(page).to have_content(adventure.location)
-    expect(page).to have_content(adventure.date)
-    expect(page).to have_content(adventure.start_time)
-    expect(page).to have_content(adventure.end_time)
+    expect(page).to have_content(adventure.formatted_date)
+    expect(page).to have_content(adventure.formatted_start_time)
+    expect(page).to have_content(adventure.formatted_end_time)
   end
 
   scenario "host does not input required information" do

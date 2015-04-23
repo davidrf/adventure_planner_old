@@ -1,82 +1,187 @@
-<h1><%= @adventure.name %></h1>
-<h2><%= @adventure.description %></h2>
-<h2><%= @adventure.location %></h2>
-<h2><%= @adventure.date %></h2>
-<h2><%= @adventure.start_time %></h2>
-<h2><%= @adventure.end_time %></h2>
-<% if @adventure.hosts.include?(current_user) %>
-  <%= link_to 'Cancel Adventure', adventure_path(@adventure), method: :delete %>
-  <%= link_to 'Update Adventure!', edit_adventure_path(@adventure) %>
-  <%= link_to 'Add a Supply!', new_adventure_supply_path(@adventure) %>
-  <% if @adventure.poll_opened_at %>
-    <%= link_to 'Propose A Time', new_adventure_proposed_time_path(@adventure) %>
-  <% else %>
-    <%= link_to 'Open Time Poll', adventure_path(@adventure), method: :put %>
-  <% end %>
-<% elsif !@adventure.members.include?(current_user) %>
-  <%= link_to 'Join The Adventure!', adventure_adventure_memberships_path(@adventure), method: :post %>
-<% end %>
+<div class="row">
+  <div class="column">
+    <div class="row">
+      <div class="column">
+        <h1 class="left"><%= @adventure.name %></h1>
+        <% if @adventure.hosts.include?(current_user) %>
+        <ul class="button-group radius small left" id="adventure-show-top-buttons">
+          <li><%= link_to 'Update Adventure!', edit_adventure_path(@adventure), class: "small button" %></li>
+          <li><%= link_to 'Cancel Adventure', adventure_path(@adventure), method: :delete, class: "small button" %></li>
+        </ul>
+        <% elsif !@adventure.members.include?(current_user) %>
+          <%= link_to 'Join The Adventure!', adventure_adventure_memberships_path(@adventure), method: :post, class: "small button radius", id: "adventure-show-top-buttons" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-4 columns">
+        <p>Date: <%= @adventure.formatted_date if @adventure.date %></p>
+      </div>
+      <div class="small-5 columns">
+        <div class="row">
+          <div class="small-6 columns">
+            <p>Start Time: <%= @adventure.formatted_start_time if @adventure.start_time %></p>
+          </div>
+          <div class="small-6 columns">
+            <p>End Time: <%= @adventure.formatted_end_time if @adventure.end_time %></p>
+          </div>
+        </div>
+      </div>
+      <div class="small-3 columns">
+        <p>Location: <%= @adventure.location unless @adventure.location.empty? %></p>
+      </div>
+    </div>
 
-<ul>
-  <% @adventure.proposed_times.each do |proposed_time| %>
-  <li>
-    <%= proposed_time.date %>
-    <%= proposed_time.start_time %>
-    <%= proposed_time.end_time %>
-    <p>No. Attending: <%= proposed_time.votes.count %></p>
-    <% if proposed_time.vote_record(current_user) %>
-      <%= link_to 'Cannot Attend', proposed_time_proposed_time_vote_path(proposed_time, proposed_time.vote_record(current_user)), method: :delete %>
-    <% else %>
-      <%= link_to 'Can Attend', proposed_time_proposed_time_votes_path(proposed_time), method: :post %>
-    <% end %>
-  </li>
-  <% end %>
-</ul>
-
-<ul>
-  <% @adventure.supplies.each do |supply| %>
-  <li>
-    <%= supply.name %>
-    <% if @adventure.hosts.include?(current_user) %>
-      <%= link_to 'Delete Supply', adventure_supply_path(@adventure, supply), method: :delete %>
-    <% end %>
-
+    <div class="row">
+      <div class="column">
+        <p><%= @adventure.description %></p>
+      </div>
+    </div>
     <% if @adventure.attendees.include?(current_user) %>
-      <% if supply.brought_by?(current_user) %>
-        <%= link_to 'I Cannot Bring This', adventure_supply_path(@adventure, supply), method: :put %>
-      <% elsif supply.unclaimed? %>
-        <%= link_to 'I Can Bring This!', adventure_supply_path(@adventure, supply), method: :put %>
-      <% end %>
+
+    <% if @adventure.poll_opened_at %>
+    <div class="row">
+      <div class="column">
+        <h4 class="left">Proposed Times For Adventure</h4>
+        <% if @adventure.hosts.include?(current_user) %>
+        <%= link_to 'Propose A Time', new_adventure_proposed_time_path(@adventure), class: "tiny button radius", id: "adventure-show-propose-time-button"%>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column">
+        <table>
+          <thead>
+            <tr>
+              <th id="dateheader">Date</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>No. Attending</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @adventure.proposed_times.each do |proposed_time| %>
+            <tr>
+              <td><%= proposed_time.formatted_date %></td>
+              <td><%= proposed_time.formatted_start_time %></td>
+              <td><%= proposed_time.formatted_end_time %></td>
+              <td><%= proposed_time.votes.count %></td>
+              <% if proposed_time.vote_record(current_user) %>
+                <td><%= link_to 'Cannot Attend', proposed_time_proposed_time_vote_path(proposed_time, proposed_time.vote_record(current_user)), method: :delete, class: "tiny button radius expand table-button" %></td>
+              <% else %>
+                <td><%= link_to 'Can Attend', proposed_time_proposed_time_votes_path(proposed_time), method: :post, class: "tiny small button radius expand table-button"%></td>
+              <% end %>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <% elsif @adventure.hosts.include?(current_user) %>
+    <div class="row">
+      <div class="column">
+        <%= link_to 'Open Time Poll', adventure_path(@adventure), method: :put, class: "small button radius" %>
+      </div>
+    </div>
     <% end %>
-  </li>
+
+    <div class="row">
+      <div class="column">
+        <h4 class="left">Adventure Supplies</h4>
+        <% if @adventure.hosts.include?(current_user) %>
+        <%= link_to 'Add a Supply!', new_adventure_supply_path(@adventure), class: "tiny button radius", id: "adventure-show-propose-time-button" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Brought By</th>
+              <% if @adventure.hosts.include?(current_user) %>
+              <th></th>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <% @adventure.supplies.each do |supply| %>
+            <tr>
+              <td><%= supply.name %></td>
+              <td>
+                <% if supply.brought_by?(current_user) %>
+                  <%= link_to "Unbring", adventure_supply_path(@adventure, supply), method: :put, class: "button radius tiny expand table-button" %>
+                <% elsif supply.bringer %>
+                  <%= supply.bringer.full_name %>
+                <% else %>
+                  <%= link_to 'Bring!', adventure_supply_path(@adventure, supply), method: :put, class: "button radius tiny expand table-button" %>
+                <% end %>
+              </td>
+              <% if @adventure.hosts.include?(current_user) %>
+              <td>
+                <%= link_to 'Delete Supply', adventure_supply_path(@adventure, supply), method: :delete, class: "button tiny radius expand table-button" %>
+              </td>
+              <% end %>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column">
+        <h4 class="left">Adventure Expenses</h4>
+        <%= link_to 'Add An Expense!', new_adventure_expense_path(@adventure), class: "tiny button radius", id: "adventure-show-propose-time-button" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th  id="expense-cost-column">Cost</th>
+              <th>Bought By</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @adventure.expenses.each do |expense| %>
+            <tr>
+              <td><%= expense.name %></td>
+              <td>$<%= expense.cost %></td>
+              <td><%= expense.owner.full_name %></td>
+              <td>
+                <% if user_signed_in? && expense.bought_by?(current_user) %>
+                <ul class="button-group even-2 radius tiny">
+                  <li><%= link_to 'Edit Expense', edit_adventure_expense_path(@adventure, expense), class: "tiny button table-button" %></li>
+                  <li><%= link_to 'Delete Expense', adventure_expense_path(@adventure, expense), method: :delete, class: "tiny button table-button" %></li>
+                </ul>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+            <tr>
+              <td colspan="1"><strong>Total Cost:</strong></td>
+              <td colspan="3">$<%= @adventure.total_cost %></td>
+            </tr>
+            <tr>
+              <td colspan="1"><strong>Cost Per Person:</strong></td>
+              <td colspan="3">$<%= @adventure.cost_per_person_formatted %></td>
+            </tr>
+            <tr>
+              <td colspan="4" id="transaction-title">Transactions To Split Expenses Evenly</td>
+            </tr>
+            <% @adventure.transactions.each do |transaction| %>
+            <tr>
+              <td colspan="4"><%= transaction %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   <% end %>
-</ul>
-
-<% if @adventure.attendees.include?(current_user) %>
-  <%= link_to 'Add An Expense!', new_adventure_expense_path(@adventure) %>
-<% end %>
-
-
-<ul>
-  <% @adventure.expenses.each do |expense| %>
-  <li>
-    <%= expense.name %> bought by <%= expense.owner.full_name %> for <%= expense.cost %>
-
-    <% if user_signed_in? && expense.bought_by?(current_user) %>
-      <%= link_to 'Delete Expense', adventure_expense_path(@adventure, expense), method: :delete %>
-      <%= link_to 'Edit Expense', edit_adventure_expense_path(@adventure, expense) %>
-    <% end %>
-  </li>
-  <% end %>
-</ul>
-
-<span>Total Cost: <%= @adventure.total_cost %></span>
-<span>Cost Per Person: <%= @adventure.cost_per_person_formatted %></span>
-
-<ul>
-  <% @adventure.transactions.each do |transaction| %>
-  <li>
-    <%= transaction %>
-  </li>
-  <% end %>
-</ul>

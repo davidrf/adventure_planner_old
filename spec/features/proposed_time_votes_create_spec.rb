@@ -13,6 +13,7 @@ feature "proposed time votes", %{
     membership_record = FactoryGirl.create(:adventure_membership)
     user = membership_record.user
     adventure = membership_record.adventure
+    adventure.update_attribute(:poll_opened_at, DateTime.now)
     proposed_time = FactoryGirl.create(:proposed_time, adventure: adventure)
 
     visit root_path
@@ -28,6 +29,7 @@ feature "proposed time votes", %{
     membership_record = FactoryGirl.create(:adventure_membership)
     user = membership_record.user
     adventure = membership_record.adventure
+    adventure.update_attribute(:poll_opened_at, DateTime.now)
     proposed_time = FactoryGirl.create(:proposed_time, adventure: adventure)
 
     visit root_path
@@ -42,6 +44,7 @@ feature "proposed time votes", %{
 
   scenario "vote count is increased" do
     adventure = FactoryGirl.create(:adventure)
+    adventure.update_attribute(:poll_opened_at, DateTime.now)
     membership_record_1 = FactoryGirl.create(:adventure_membership,
       adventure: adventure
     )

@@ -6,14 +6,18 @@ class Supply < ActiveRecord::Base
   validates :name, presence: true
   validates :adventure, presence: true
 
-  def brought_by?(user)
+  def bringer
     supplier = nil
     if adventure_host
       supplier = adventure_host.user
     elsif adventure_membership
       supplier = adventure_membership.user
     end
-    supplier == user
+    supplier
+  end
+
+  def brought_by?(user)
+    bringer == user
   end
 
   def unclaimed?

@@ -26,9 +26,9 @@ feature "host can create a proposed time", %{
     click_button "Propose Time"
 
     expect(page).to have_content("Proposed Time Added!")
-    expect(page).to have_content(proposed_time.date)
-    expect(page).to have_content(proposed_time.start_time)
-    expect(page).to have_content(proposed_time.end_time)
+    expect(page).to have_content(proposed_time.formatted_date)
+    expect(page).to have_content(proposed_time.formatted_start_time)
+    expect(page).to have_content(proposed_time.formatted_end_time)
   end
 
   scenario "required fields not filled in" do
