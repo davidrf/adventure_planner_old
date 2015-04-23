@@ -2,8 +2,8 @@ require "factory_girl"
 
 FactoryGirl.define do
   factory :user do
-    sequence(:first_name) {|n| "Gene#{n}" }
-    sequence(:last_name) {|n| "Parmesan#{n}" }
+    sequence(:first_name) { |n| "Gene#{n}" }
+    sequence(:last_name) { |n| "Parmesan#{n}" }
     sequence(:email) {|n| "user#{n}@example.com" }
     password "password"
     password_confirmation "password"
