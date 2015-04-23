@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :adventure_memberships, only: [:create]
     resources :proposed_times, only: [:new, :create]
     resources :supplies, only: [:new, :create, :destroy, :update]
+    resources :expenses, only: [:new, :create, :destroy, :edit, :update]
   end
 
   resources :proposed_times, only: :none do
